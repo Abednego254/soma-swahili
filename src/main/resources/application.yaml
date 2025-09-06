@@ -1,0 +1,44 @@
+server:
+  port: 9090
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/soma_swahili?useSSL=false&serverTimezone=Africa/Nairobi
+    username: root
+    password: Ciumbe@254
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: false  # turned off to avoid noisy console
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+
+  application:
+    name: soma-swahili
+
+  main:
+    log-startup-info: true
+    allow-bean-definition-overriding: true
+
+  output:
+    ansi:
+      enabled: always
+
+jwt:
+  secret: SystechSmartInternSecretKey!ChangeThisToProduction
+  expiration: 86400000  # 1 day in ms
+
+logging:
+  level:
+    root: INFO
+    com.abednego.smartIntern: DEBUG   # Enable detailed logs for the app
+    org.hibernate.SQL: OFF           # Disable Hibernate SQL logs
+    org.hibernate.type.descriptor.sql.BasicBinder: OFF
+
+  file:
+    name: logs/smartintern.log       # Log file output path
+
+  pattern:
+    console: "%d{HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
