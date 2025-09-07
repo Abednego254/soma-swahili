@@ -4,29 +4,38 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+import java.util.List;
+
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-@PrimaryKeyJoinColumn(name = "id") // join inheritance using same User ID
+@PrimaryKeyJoinColumn(name = "id") // inherit from User
 public class Tutor extends User {
 
-    @NotBlank(message = "Company name is required")
+    @NotBlank(message = "Highest qualification is required")
     @Column(nullable = false)
-    private String companyName;
+    private String highestQualification;
 
-    @Column
-    private String companyWebsite;
-
-    @NotBlank(message = "Contact person name is required")
+    @NotBlank(message = "Teaching experience is required")
     @Column(nullable = false)
-    private String contactPerson;
+    private String teachingExperience;
 
-    @Column
-    private String industry;
+    @Column(length = 500)
+    private String bio;
 
-    @Column
-    private String location;
+    @Column(nullable = false)
+    private String videoUrl;  // demo teaching video
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TutorStatus status = TutorStatus.PENDING;
+
+    @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TutorDocument> documents;
+
+    @OneToOne(mappedBy = "tutor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private TutorWallet wallet;
 }

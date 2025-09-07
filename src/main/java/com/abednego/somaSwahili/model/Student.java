@@ -1,31 +1,29 @@
 package com.abednego.somaSwahili.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 
 @EqualsAndHashCode(callSuper = true)
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor @Builder
 @Entity
-@PrimaryKeyJoinColumn(name = "id") // ensures it uses the same ID as from User table
+@PrimaryKeyJoinColumn(name = "id")
 public class Student extends User {
 
-    @NotBlank(message = "Institution name is required")
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String institution;
+    private ProficiencyLevel proficiencyLevel; // BEGINNER, INTERMEDIATE, ADVANCED
 
-    @NotBlank(message = "Course name is required")
-    @Column(nullable = false)
-    private String course;
+    @Column(length = 500)
+    private String learningGoals;             // e.g., “Business Kiswahili”, “Travel”
 
-    @Column
-    private int yearOfStudy;
+    @Column(length = 100)
+    private String preferredLearningStyle;    // e.g., “1-on-1”, “Group”, “Self-paced”
 
-    @Size(min = 5, message = "Registration number should be meaningful")
-    @Column(unique = true)
-    private String registrationNumber;
+    @Column(length = 100)
+    private String availability;              // e.g., “Evenings”, “Weekends”, “Flexible”
+
+    // Optional convenience link to wallet (inverse side)
+    @OneToOne(mappedBy = "student", fetch = FetchType.LAZY)
+    private StudentWallet wallet;
 }

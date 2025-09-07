@@ -1,9 +1,8 @@
 package com.abednego.somaSwahili.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
-
-import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -16,19 +15,16 @@ public class Lesson {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String topic;
+    @NotBlank(message = "Lesson title is required")
+    @Column(nullable = false)
+    private String title;
 
-    private String description;
+    @Column(length = 2000)
+    private String content; // could be text, URL, etc.
 
-    private LocalDateTime startTime;
+    private String videoUrl; // optional video for lesson
 
-    private LocalDateTime endTime;
-
-    @ManyToOne
-    @JoinColumn(name = "tutor_id", nullable = false)
-    private Tutor tutor;
-
-    @ManyToOne
-    @JoinColumn(name = "student_id", nullable = false)
-    private Student student;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "course_id", nullable = false)
+    private Course course;
 }

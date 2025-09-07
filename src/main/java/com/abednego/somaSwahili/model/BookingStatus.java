@@ -1,8 +1,9 @@
 package com.abednego.somaSwahili.model;
 
 public enum BookingStatus {
-    PENDING,
-    CONFIRMED,
-    CANCELLED,
-    COMPLETED
+    PENDING,            // student requested; awaiting tutor action
+    CONFIRMED,          // tutor accepted
+    COMPLETED,          // lesson delivered
+    CANCELLED,          // cancelled (by student/admin, with policy)
+    DECLINED_BY_TUTOR   // tutor declined; credit goes back to wallet (CREDIT_BACK)
 }

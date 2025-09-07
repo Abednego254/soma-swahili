@@ -1,45 +1,48 @@
 package com.abednego.somaSwahili.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = "password")
+@EqualsAndHashCode(exclude = "password")
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED) // Remove DiscriminatorColumn!
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "First name is required")
+    @NotBlank
     @Size(min = 2, max = 30)
     @Column(nullable = false)
     private String firstName;
 
-    @NotBlank(message = "Last name is required")
+    @NotBlank
     @Size(min = 2, max = 30)
     @Column(nullable = false)
     private String lastName;
 
-    @NotBlank(message = "Email is required")
-    @Email(message = "Email should be valid")
+    @NotBlank
+    @Email
     @Column(unique = true, nullable = false)
     private String email;
 
-    @NotBlank(message = "Password is required")
-    @Size(min = 6, message = "Password must be at least 6 characters")
+    @NotBlank
+    @Size(min = 6)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // only write, never read in API
     @Column(nullable = false)
     private String password;
 
-    @NotBlank(message = "Phone is required")
+    @NotBlank
     @Column(unique = true, nullable = false)
     private String phone;
 
@@ -47,16 +50,37 @@ public abstract class User {
     @Column(nullable = false)
     private Role role;
 
-    private boolean isVerified = true;
+    @Column(nullable = false)
+    private boolean isVerified = false;
+
+    @Column(nullable = false)
     private boolean isActive = true;
 
+    @Column(nullable = false)
+    private boolean isDeleted = false;
+
+    private String profilePictureUrl;
+
+    // 🔹 Newly added fields
+    private LocalDateTime lastLogin;
+    private String preferredLanguage;
+    private String location;
+    private String resetToken;
+    private LocalDateTime resetTokenExpiry;
+
+    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
+
+    @Column(nullable = false)
     private LocalDateTime updatedAt;
+
+    @Version
+    private Long version;
 
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
-        updatedAt = LocalDateTime.now();
+        updatedAt = createdAt;
     }
 
     @PreUpdate

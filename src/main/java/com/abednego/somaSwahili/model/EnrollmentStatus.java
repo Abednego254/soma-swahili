@@ -1,7 +1,7 @@
 package com.abednego.somaSwahili.model;
 
-public enum PaymentStatus {
-    PENDING,
+public enum EnrollmentStatus {
+    ACTIVE,
     COMPLETED,
-    FAILED
+    CANCELLED
 }

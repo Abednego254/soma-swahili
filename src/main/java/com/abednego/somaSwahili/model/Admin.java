@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -18,12 +19,20 @@ public class Admin extends User {
     @Column(name = "admin_code", unique = true, nullable = false)
     private String adminCode;
 
-    @NotBlank(message = "Department is required")
-    @Size(min = 2, message = "Department name must be at least 2 characters")
-    @Column(name = "department", nullable = false)
-    private String department;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "admin_level", nullable = false)
     private AdminLevel adminLevel;
+
+    // 🔹 Hierarchy: Manager of this admin (null for Super Admin)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "manager_id")
+    private Admin manager;
+
+    // 🔹 Subordinates reporting to this admin
+    @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL)
+    private List<Admin> subordinates;
+
+    // 🔹 Optional internal notes
+    @Column(length = 500)
+    private String notes;
 }
