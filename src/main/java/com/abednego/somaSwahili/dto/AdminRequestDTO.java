@@ -1,13 +1,12 @@
 package com.abednego.somaSwahili.dto;
 
-import com.abednego.somaSwahili.model.AdminLevel;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class AdminRegistrationDto {
+public class AdminRequestDTO {
 
     @NotBlank(message = "First name is required")
     private String firstName;
@@ -33,5 +32,9 @@ public class AdminRegistrationDto {
     @NotBlank(message = "Department is required")
     private String department;
 
-    private AdminLevel adminLevel;
+    private String adminLevel; // map to AdminLevel enum in service layer
+
+    private Long managerId; // optional, assign manager if needed
+
+    private String notes; // optional internal notes
 }

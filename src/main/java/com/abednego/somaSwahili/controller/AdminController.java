@@ -1,7 +1,7 @@
 package com.abednego.somaSwahili.controller;
 
-import com.abednego.somaSwahili.dto.AdminUpdateDto;
-import com.abednego.somaSwahili.dto.AdminRegistrationDto;
+import com.abednego.somaSwahili.dto.AdminResponseDTO;
+import com.abednego.somaSwahili.dto.AdminRequestDTO;
 import com.abednego.somaSwahili.exception.ResourceNotFoundException;
 import com.abednego.somaSwahili.model.Admin;
 import com.abednego.somaSwahili.service.AdminService;
@@ -22,7 +22,7 @@ public class AdminController {
     private final AdminService adminService;
 
     @PostMapping
-    public ResponseEntity<Admin> createAdmin(@Valid @RequestBody AdminRegistrationDto adminDto) {
+    public ResponseEntity<Admin> createAdmin(@Valid @RequestBody AdminRequestDTO adminDto) {
         log.info("Creating admin: {}", adminDto.getEmail());
         Admin createdAdmin = adminService.save(adminDto);
         return ResponseEntity.ok(createdAdmin);
@@ -51,7 +51,7 @@ public class AdminController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Admin> updateAdmin(@PathVariable Long id, @Valid @RequestBody AdminUpdateDto updatedAdmin) {
+    public ResponseEntity<Admin> updateAdmin(@PathVariable Long id, @Valid @RequestBody AdminResponseDTO updatedAdmin) {
         log.info("Updating admin with ID: {}", id);
         Admin existingAdmin = adminService.update(id, updatedAdmin);
         return ResponseEntity.ok(existingAdmin);

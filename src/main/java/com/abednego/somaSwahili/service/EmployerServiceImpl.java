@@ -1,7 +1,7 @@
 package com.abednego.somaSwahili.service.impl;
 
-import com.abednego.somaSwahili.dto.TutorUpdateDto;
-import com.abednego.somaSwahili.dto.TutorRegistrationDto;
+import com.abednego.somaSwahili.dto.TutorResponseDTO;
+import com.abednego.somaSwahili.dto.TutorRequestDTO;
 import com.abednego.somaSwahili.exception.ResourceNotFoundException;
 import com.abednego.somaSwahili.model.Tutor;
 import com.abednego.somaSwahili.model.Role;
@@ -24,7 +24,7 @@ public class EmployerServiceImpl implements EmployerService {
     private final PasswordEncoder passwordEncoder; // inject encoder
 
     @Override
-    public Tutor save(TutorRegistrationDto dto) {
+    public Tutor save(TutorRequestDTO dto) {
         log.info("Saving new employer: {}", dto.getEmail());
 
         Tutor tutor = new Tutor();
@@ -62,7 +62,7 @@ public class EmployerServiceImpl implements EmployerService {
     }
 
     @Override
-    public Tutor update(Long id, TutorUpdateDto updatedEmployer) {
+    public Tutor update(Long id, TutorResponseDTO updatedEmployer) {
         log.info("Updating employer with ID: {}", id);
         Tutor existingTutor = employerRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Employer not found with ID: " + id));

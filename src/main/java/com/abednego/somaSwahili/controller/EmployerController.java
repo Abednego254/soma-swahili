@@ -1,7 +1,7 @@
 package com.abednego.somaSwahili.controller;
 
-import com.abednego.somaSwahili.dto.TutorUpdateDto;
-import com.abednego.somaSwahili.dto.TutorRegistrationDto;
+import com.abednego.somaSwahili.dto.TutorResponseDTO;
+import com.abednego.somaSwahili.dto.TutorRequestDTO;
 import com.abednego.somaSwahili.exception.ResourceNotFoundException;
 import com.abednego.somaSwahili.model.Tutor;
 import com.abednego.somaSwahili.service.EmployerService;
@@ -22,7 +22,7 @@ public class EmployerController {
     private final EmployerService employerService;
 
     @PostMapping
-    public ResponseEntity<Tutor> createEmployer(@Valid @RequestBody TutorRegistrationDto employerDto) {
+    public ResponseEntity<Tutor> createEmployer(@Valid @RequestBody TutorRequestDTO employerDto) {
         log.info("Creating employer: {}", employerDto.getEmail());
         Tutor createdTutor = employerService.save(employerDto);
         return ResponseEntity.ok(createdTutor);
@@ -51,7 +51,7 @@ public class EmployerController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Tutor> updateEmployer(@PathVariable Long id, @Valid @RequestBody TutorUpdateDto updatedEmployer) {
+    public ResponseEntity<Tutor> updateEmployer(@PathVariable Long id, @Valid @RequestBody TutorResponseDTO updatedEmployer) {
         log.info("Updating employer with ID: {}", id);
         Tutor existingTutor = employerService.update(id, updatedEmployer);
         return ResponseEntity.ok(existingTutor);

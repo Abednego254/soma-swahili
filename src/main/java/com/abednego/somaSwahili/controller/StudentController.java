@@ -1,7 +1,7 @@
 package com.abednego.somaSwahili.controller;
 
-import com.abednego.somaSwahili.dto.StudentUpdateDto;
-import com.abednego.somaSwahili.dto.StudentRegistrationDto;
+import com.abednego.somaSwahili.dto.StudentResponseDTO;
+import com.abednego.somaSwahili.dto.StudentRequestDTO;
 import com.abednego.somaSwahili.exception.ResourceNotFoundException;
 import com.abednego.somaSwahili.model.Student;
 import com.abednego.somaSwahili.service.StudentService;
@@ -22,7 +22,7 @@ public class StudentController {
     private final StudentService studentService;
 
     @PostMapping
-    public ResponseEntity<Student> createStudent(@Valid @RequestBody StudentRegistrationDto studentDto) {
+    public ResponseEntity<Student> createStudent(@Valid @RequestBody StudentRequestDTO studentDto) {
         log.info("Creating student: {}", studentDto.getEmail());
         Student createdStudent = studentService.save(studentDto);
         return ResponseEntity.ok(createdStudent);
@@ -51,7 +51,7 @@ public class StudentController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Student> updateStudent(@PathVariable Long id, @Valid @RequestBody StudentUpdateDto updatedStudent) {
+    public ResponseEntity<Student> updateStudent(@PathVariable Long id, @Valid @RequestBody StudentResponseDTO updatedStudent) {
         log.info("Updating student with ID: {}", id);
         Student existingStudent = studentService.update(id, updatedStudent);
         return ResponseEntity.ok(existingStudent);

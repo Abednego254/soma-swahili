@@ -1,7 +1,7 @@
 package com.abednego.somaSwahili.service.impl;
 
-import com.abednego.somaSwahili.dto.AdminUpdateDto;
-import com.abednego.somaSwahili.dto.AdminRegistrationDto;
+import com.abednego.somaSwahili.dto.AdminResponseDTO;
+import com.abednego.somaSwahili.dto.AdminRequestDTO;
 import com.abednego.somaSwahili.exception.ResourceNotFoundException;
 import com.abednego.somaSwahili.model.Admin;
 import com.abednego.somaSwahili.model.Role;
@@ -24,7 +24,7 @@ public class AdminServiceImpl implements AdminService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public Admin save(AdminRegistrationDto dto) {
+    public Admin save(AdminRequestDTO dto) {
         log.info("Saving new admin: {}", dto.getEmail());
 
         Admin admin = new Admin();
@@ -60,7 +60,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Admin update(Long id, AdminUpdateDto updatedAdmin) {
+    public Admin update(Long id, AdminResponseDTO updatedAdmin) {
     log.info("Updating admin with ID: {}", id);
     Admin existingAdmin = adminRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Admin not found with ID: " + id));

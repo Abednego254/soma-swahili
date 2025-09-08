@@ -4,9 +4,10 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import java.util.List;
 
 @Data
-public class TutorRegistrationDto {
+public class TutorRequestDTO {
 
     @NotBlank(message = "First name is required")
     private String firstName;
@@ -25,15 +26,18 @@ public class TutorRegistrationDto {
     @NotBlank(message = "Phone is required")
     private String phone;
 
-    @NotBlank(message = "Company name is required")
-    private String companyName;
+    @NotBlank(message = "Highest qualification is required")
+    private String highestQualification;
 
-    private String companyWebsite;
+    @NotBlank(message = "Teaching experience is required")
+    private String teachingExperience;
 
-    @NotBlank(message = "Contact person is required")
-    private String contactPerson;
+    private String bio;              // optional
 
-    private String industry;
+    @NotBlank(message = "Video URL is required")
+    private String videoUrl;
 
-    private String location;
+    private String status;           // map to TutorStatus enum in service layer
+
+    private List<Long> documentIds;  // IDs of uploaded TutorDocuments
 }

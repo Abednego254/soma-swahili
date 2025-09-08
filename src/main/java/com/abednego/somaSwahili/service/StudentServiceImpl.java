@@ -1,7 +1,7 @@
 package com.abednego.somaSwahili.service.impl;
 
-import com.abednego.somaSwahili.dto.StudentUpdateDto;
-import com.abednego.somaSwahili.dto.StudentRegistrationDto;
+import com.abednego.somaSwahili.dto.StudentResponseDTO;
+import com.abednego.somaSwahili.dto.StudentRequestDTO;
 import com.abednego.somaSwahili.exception.ResourceNotFoundException;
 import com.abednego.somaSwahili.model.Role;
 import com.abednego.somaSwahili.model.Student;
@@ -24,7 +24,7 @@ public class StudentServiceImpl implements StudentService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public Student save(StudentRegistrationDto dto) {
+    public Student save(StudentRequestDTO dto) {
         log.info("Saving new student: {}", dto.getEmail());
 
         Student student = new Student();
@@ -61,7 +61,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
      @Override
-    public Student update(Long id, StudentUpdateDto updatedStudent) {
+    public Student update(Long id, StudentResponseDTO updatedStudent) {
     log.info("Updating student with ID: {}", id);
     Student existingStudent = studentRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Student not found with ID: " + id));

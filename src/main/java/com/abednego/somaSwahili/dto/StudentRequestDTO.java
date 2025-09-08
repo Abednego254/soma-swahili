@@ -6,14 +6,12 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class StudentRegistrationDto {
+public class StudentRequestDTO {
 
     @NotBlank(message = "First name is required")
-    @Size(min = 2)
     private String firstName;
 
     @NotBlank(message = "Last name is required")
-    @Size(min = 2)
     private String lastName;
 
     @Email(message = "Email should be valid")
@@ -27,15 +25,10 @@ public class StudentRegistrationDto {
     @NotBlank(message = "Phone is required")
     private String phone;
 
-    @NotBlank(message = "Institution is required")
-    private String institution;
+    @NotBlank(message = "Proficiency level is required")
+    private String proficiencyLevel;   // map to ProficiencyLevel enum in service layer
 
-    @NotBlank(message = "Course is required")
-    private String course;
-
-    private Integer yearOfStudy;
-
-    @NotBlank(message = "Registration number is required")
-    private String registrationNumber;
-
+    private String learningGoals;      // optional
+    private String preferredLearningStyle; // optional
+    private String availability;       // optional
 }
