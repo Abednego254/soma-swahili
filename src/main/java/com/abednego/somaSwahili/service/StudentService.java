@@ -1,8 +1,8 @@
 package com.abednego.somaSwahili.service;
 
-import com.abednego.somaSwahili.model.Student;
-import com.abednego.somaSwahili.dto.StudentRequestDTO;
-import com.abednego.somaSwahili.dto.StudentResponseDTO;
+import com.abednego.somaSwahili.model.student.Student;
+import com.abednego.somaSwahili.dto.student.StudentRequestDTO;
+import com.abednego.somaSwahili.dto.student.StudentResponseDTO;
 
 import java.util.List;
 import java.util.Optional;

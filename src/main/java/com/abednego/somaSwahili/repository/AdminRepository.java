@@ -1,6 +1,6 @@
 package com.abednego.somaSwahili.repository;
 
-import com.abednego.somaSwahili.model.Admin;
+import com.abednego.somaSwahili.model.admin.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

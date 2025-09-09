@@ -1,5 +1,6 @@
 package com.abednego.somaSwahili.model;
 
+import com.abednego.somaSwahili.model.other.Role;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;

@@ -1,7 +1,7 @@
 package com.abednego.somaSwahili.service.impl;
 
-import com.abednego.somaSwahili.dto.LoginRequestDto;
-import com.abednego.somaSwahili.dto.LoginResponseDto;
+import com.abednego.somaSwahili.dto.auth.LoginRequestDto;
+import com.abednego.somaSwahili.dto.auth.LoginResponseDto;
 import com.abednego.somaSwahili.dto.UserDto;
 import com.abednego.somaSwahili.exception.InvalidCredentialsException;
 import com.abednego.somaSwahili.model.User;

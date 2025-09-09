@@ -1,9 +1,9 @@
 package com.abednego.somaSwahili.controller;
 
-import com.abednego.somaSwahili.dto.AdminResponseDTO;
-import com.abednego.somaSwahili.dto.AdminRequestDTO;
+import com.abednego.somaSwahili.dto.admin.AdminResponseDTO;
+import com.abednego.somaSwahili.dto.admin.AdminRequestDTO;
 import com.abednego.somaSwahili.exception.ResourceNotFoundException;
-import com.abednego.somaSwahili.model.Admin;
+import com.abednego.somaSwahili.model.admin.Admin;
 import com.abednego.somaSwahili.service.AdminService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

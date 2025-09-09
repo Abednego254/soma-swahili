@@ -1,8 +1,8 @@
 package com.abednego.somaSwahili.service;
 
-import com.abednego.somaSwahili.dto.AdminRequestDTO;
-import com.abednego.somaSwahili.model.Admin;
-import com.abednego.somaSwahili.dto.AdminResponseDTO;
+import com.abednego.somaSwahili.dto.admin.AdminRequestDTO;
+import com.abednego.somaSwahili.model.admin.Admin;
+import com.abednego.somaSwahili.dto.admin.AdminResponseDTO;
 import java.util.List;
 import java.util.Optional;
 

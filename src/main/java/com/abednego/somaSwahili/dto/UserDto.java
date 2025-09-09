@@ -1,6 +1,6 @@
 package com.abednego.somaSwahili.dto;
 
-import com.abednego.somaSwahili.model.Role;
+import com.abednego.somaSwahili.model.other.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,7 +1,7 @@
 package com.abednego.somaSwahili.security;
 
 import com.abednego.somaSwahili.model.User;
-import com.abednego.somaSwahili.model.Role;
+import com.abednego.somaSwahili.model.other.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

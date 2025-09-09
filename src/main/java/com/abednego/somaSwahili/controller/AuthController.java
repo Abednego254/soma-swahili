@@ -1,7 +1,7 @@
 package com.abednego.somaSwahili.controller;
 
-import com.abednego.somaSwahili.dto.LoginRequestDto;
-import com.abednego.somaSwahili.dto.LoginResponseDto;
+import com.abednego.somaSwahili.dto.auth.LoginRequestDto;
+import com.abednego.somaSwahili.dto.auth.LoginResponseDto;
 import com.abednego.somaSwahili.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

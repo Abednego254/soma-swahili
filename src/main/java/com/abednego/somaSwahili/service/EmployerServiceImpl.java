@@ -1,10 +1,10 @@
 package com.abednego.somaSwahili.service.impl;
 
-import com.abednego.somaSwahili.dto.TutorResponseDTO;
-import com.abednego.somaSwahili.dto.TutorRequestDTO;
+import com.abednego.somaSwahili.dto.tutor.TutorResponseDTO;
+import com.abednego.somaSwahili.dto.tutor.TutorRequestDTO;
 import com.abednego.somaSwahili.exception.ResourceNotFoundException;
-import com.abednego.somaSwahili.model.Tutor;
-import com.abednego.somaSwahili.model.Role;
+import com.abednego.somaSwahili.model.tutor.Tutor;
+import com.abednego.somaSwahili.model.other.Role;
 import com.abednego.somaSwahili.repository.EmployerRepository;
 import com.abednego.somaSwahili.service.EmployerService;
 import lombok.RequiredArgsConstructor;
