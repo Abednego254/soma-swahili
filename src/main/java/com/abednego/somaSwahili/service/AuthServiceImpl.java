@@ -1,4 +1,4 @@
-package com.abednego.somaSwahili.service.impl;
+package com.abednego.somaSwahili.service;
 
 import com.abednego.somaSwahili.dto.auth.LoginRequestDto;
 import com.abednego.somaSwahili.dto.auth.LoginResponseDto;
@@ -38,20 +38,13 @@ public class AuthServiceImpl implements AuthService {
         // Generate token using CustomUserDetails (which implements UserDetails)
         String token = jwtService.generateToken(new CustomUserDetails(user));
 
-        // Build DTO for returning user info
-        UserDto userDto = UserDto.builder()
-                .id(user.getId())
-                .firstName(user.getFirstName())
-                .lastName(user.getLastName())
-                .email(user.getEmail())
-                .phone(user.getPhone())
-                .role(user.getRole())
-                .build();
-
         // Return response with token + user details
         return LoginResponseDto.builder()
-                .token(token)
-                .user(userDto)
+                .accessToken(token)
+                .userId(user.getId())
+                .role(user.getRole().name())
+                .fullName(user.getFirstName() + " " + user.getLastName())
+                .email(user.getEmail())
                 .build();
     }
 }

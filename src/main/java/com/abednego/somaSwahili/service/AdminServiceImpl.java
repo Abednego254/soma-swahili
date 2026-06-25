@@ -1,9 +1,10 @@
-package com.abednego.somaSwahili.service.impl;
+package com.abednego.somaSwahili.service;
 
 import com.abednego.somaSwahili.dto.admin.AdminResponseDTO;
 import com.abednego.somaSwahili.dto.admin.AdminRequestDTO;
 import com.abednego.somaSwahili.exception.ResourceNotFoundException;
 import com.abednego.somaSwahili.model.admin.Admin;
+import com.abednego.somaSwahili.model.admin.AdminLevel;
 import com.abednego.somaSwahili.model.other.Role;
 import com.abednego.somaSwahili.repository.AdminRepository;
 import com.abednego.somaSwahili.service.AdminService;
@@ -34,8 +35,15 @@ public class AdminServiceImpl implements AdminService {
         admin.setPassword(passwordEncoder.encode(dto.getPassword()));
         admin.setPhone(dto.getPhone());
         admin.setAdminCode(dto.getAdminCode());
-        admin.setDepartment(dto.getDepartment());
-        admin.setAdminLevel(dto.getAdminLevel());
+        if (dto.getAdminLevel() != null) {
+            admin.setAdminLevel(AdminLevel.valueOf(dto.getAdminLevel().toUpperCase()));
+        }
+        if (dto.getManagerId() != null) {
+            Admin manager = adminRepository.findById(dto.getManagerId())
+                .orElseThrow(() -> new ResourceNotFoundException("Manager not found with ID: " + dto.getManagerId()));
+            admin.setManager(manager);
+        }
+        admin.setNotes(dto.getNotes());
         admin.setRole(Role.ADMIN);
 
         return adminRepository.save(admin);
@@ -61,38 +69,32 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Admin update(Long id, AdminResponseDTO updatedAdmin) {
-    log.info("Updating admin with ID: {}", id);
-    Admin existingAdmin = adminRepository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("Admin not found with ID: " + id));
+        log.info("Updating admin with ID: {}", id);
+        Admin existingAdmin = adminRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Admin not found with ID: " + id));
 
-    if (updatedAdmin.getFirstName() != null)
-        existingAdmin.setFirstName(updatedAdmin.getFirstName());
+        if (updatedAdmin.getFirstName() != null)
+            existingAdmin.setFirstName(updatedAdmin.getFirstName());
 
-    if (updatedAdmin.getLastName() != null)
-        existingAdmin.setLastName(updatedAdmin.getLastName());
+        if (updatedAdmin.getLastName() != null)
+            existingAdmin.setLastName(updatedAdmin.getLastName());
 
-    if (updatedAdmin.getPhone() != null)
-        existingAdmin.setPhone(updatedAdmin.getPhone());
+        if (updatedAdmin.getPhone() != null)
+            existingAdmin.setPhone(updatedAdmin.getPhone());
 
-    if (updatedAdmin.getAdminLevel() != null)
-        existingAdmin.setAdminLevel(updatedAdmin.getAdminLevel());
+        if (updatedAdmin.getAdminLevel() != null)
+            existingAdmin.setAdminLevel(AdminLevel.valueOf(updatedAdmin.getAdminLevel().toUpperCase()));
 
-    if (updatedAdmin.getDepartment() != null)
-        existingAdmin.setDepartment(updatedAdmin.getDepartment());
+        if (updatedAdmin.getAdminCode() != null)
+            existingAdmin.setAdminCode(updatedAdmin.getAdminCode());
 
-    if (updatedAdmin.getAdminCode() != null)
-        existingAdmin.setAdminCode(updatedAdmin.getAdminCode());
+        if (updatedAdmin.getEmail() != null)
+            existingAdmin.setEmail(updatedAdmin.getEmail());
 
-    if (updatedAdmin.getRole() != null)
-        existingAdmin.setRole(updatedAdmin.getRole());
+        if (updatedAdmin.getNotes() != null)
+            existingAdmin.setNotes(updatedAdmin.getNotes());
 
-    if (updatedAdmin.getEmail() != null)
-        existingAdmin.setEmail(updatedAdmin.getEmail());
-
-    if (updatedAdmin.getPassword() != null)
-        existingAdmin.setPassword(passwordEncoder.encode(updatedAdmin.getPassword())); // encrypt if applicable
-
-    return adminRepository.save(existingAdmin);
+        return adminRepository.save(existingAdmin);
     }
 
     @Override

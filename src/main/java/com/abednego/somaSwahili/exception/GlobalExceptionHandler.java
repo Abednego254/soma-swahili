@@ -19,7 +19,8 @@ public class GlobalExceptionHandler {
         InvalidCredentialsException.class,
         UnauthorizedAccessException.class,
         ResourceNotFoundException.class,
-        TokenExpiredException.class
+        TokenExpiredException.class,
+        InsufficientBalanceException.class
     })
     public ResponseEntity<ApiError> handleCustomExceptions(
             RuntimeException ex, HttpServletRequest request) {
@@ -31,6 +32,7 @@ public class GlobalExceptionHandler {
         else if (ex instanceof UnauthorizedAccessException) status = HttpStatus.FORBIDDEN;
         else if (ex instanceof ResourceNotFoundException) status = HttpStatus.NOT_FOUND;
         else if (ex instanceof TokenExpiredException) status = HttpStatus.UNAUTHORIZED;
+        else if (ex instanceof InsufficientBalanceException) status = HttpStatus.BAD_REQUEST;
 
         logger.error("Handled custom exception: {} at [{}] with status {}", ex.getClass().getSimpleName(), request.getRequestURI(), status);
 

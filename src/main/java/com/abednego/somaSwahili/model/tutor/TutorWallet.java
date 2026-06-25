@@ -19,6 +19,7 @@ public class TutorWallet {
 
     @OneToOne
     @JoinColumn(name = "tutor_id", nullable = false)
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties("wallet")
     private Tutor tutor;
 
     @Column(nullable = false)

@@ -18,6 +18,7 @@ public class StudentWallet {
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "student_id", nullable = false, unique = true)
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties("wallet")
     private Student student;
 
     @Column(nullable = false, precision = 12, scale = 2)
