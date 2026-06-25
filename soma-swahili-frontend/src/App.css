@@ -464,3 +464,35 @@
 .rounded { border-radius: 8px; }
 .d-block { display: block; }
 .mx-auto { margin-left: auto; margin-right: auto; }
+
+/* --- BRAND LOGO STYLING --- */
+.brand-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(226, 184, 66, 0.15));
+}
+
+.landing-logo {
+  width: 130px;
+  height: 130px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 4px 12px rgba(226, 184, 66, 0.25));
+  animation: float 6s ease-in-out infinite;
+}
+
+.auth-logo {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(226, 184, 66, 0.2));
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
