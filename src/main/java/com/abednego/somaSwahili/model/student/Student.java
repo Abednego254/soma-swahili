@@ -26,6 +26,6 @@ public class Student extends User {
     private String availability;              // e.g., “Evenings”, “Weekends”, “Flexible”
 
     // Optional convenience link to wallet (inverse side)
-    @OneToOne(mappedBy = "student", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private StudentWallet wallet;
 }
