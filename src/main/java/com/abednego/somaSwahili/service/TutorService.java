@@ -1,6 +1,7 @@
 package com.abednego.somaSwahili.service;
 
 import com.abednego.somaSwahili.model.tutor.Tutor;
+import com.abednego.somaSwahili.model.tutor.TutorStatus;
 import com.abednego.somaSwahili.dto.tutor.TutorRequestDTO;
 import com.abednego.somaSwahili.dto.tutor.TutorResponseDTO;
 
@@ -14,4 +15,6 @@ public interface TutorService {
     List<Tutor> findAll();
     Tutor update(Long id, TutorResponseDTO updatedTutor);
     void delete(Long id);
+    Tutor updateTutorStatus(Long id, TutorStatus status);
+    List<Tutor> findTutorsByStatus(TutorStatus status);
 }

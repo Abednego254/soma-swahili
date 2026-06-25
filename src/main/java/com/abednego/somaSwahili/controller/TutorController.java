@@ -4,6 +4,7 @@ import com.abednego.somaSwahili.dto.tutor.TutorResponseDTO;
 import com.abednego.somaSwahili.dto.tutor.TutorRequestDTO;
 import com.abednego.somaSwahili.exception.ResourceNotFoundException;
 import com.abednego.somaSwahili.model.tutor.Tutor;
+import com.abednego.somaSwahili.model.tutor.TutorStatus;
 import com.abednego.somaSwahili.service.TutorService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -62,5 +63,22 @@ public class TutorController {
         log.info("Deleting tutor with ID: {}", id);
         tutorService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    // 🔹 Endpoint for Admins to view tutors filtered by status (e.g. PENDING)
+    @GetMapping("/status/{status}")
+    public ResponseEntity<List<Tutor>> getTutorsByStatus(@PathVariable("status") TutorStatus status) {
+        log.info("Fetching tutors by status: {}", status);
+        return ResponseEntity.ok(tutorService.findTutorsByStatus(status));
+    }
+
+    // 🔹 Endpoint for Admins to approve/reject tutors
+    @PutMapping("/{id}/status")
+    public ResponseEntity<Tutor> updateTutorStatus(
+            @PathVariable("id") Long id,
+            @RequestParam("status") TutorStatus status) {
+        log.info("Request to change tutor {} status to {}", id, status);
+        Tutor updatedTutor = tutorService.updateTutorStatus(id, status);
+        return ResponseEntity.ok(updatedTutor);
     }
 }

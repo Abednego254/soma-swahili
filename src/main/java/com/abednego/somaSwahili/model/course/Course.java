@@ -30,6 +30,7 @@ public class Course {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tutor_id", nullable = false)
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties("courses")
     private Tutor tutor;
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)

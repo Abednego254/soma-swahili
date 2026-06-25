@@ -22,9 +22,11 @@ import java.util.Optional;
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
+    private final com.abednego.somaSwahili.repository.StudentWalletRepository studentWalletRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Override
+    @org.springframework.transaction.annotation.Transactional
     public Student save(StudentRequestDTO dto) {
         log.info("Saving new student: {}", dto.getEmail());
 
@@ -42,6 +44,13 @@ public class StudentServiceImpl implements StudentService {
         student.setPreferredLearningStyle(dto.getPreferredLearningStyle());
         student.setAvailability(dto.getAvailability());
         student.setRole(Role.STUDENT); // 🎓 assign role
+
+        // Automatically initialize student wallet with 0.00 balance
+        com.abednego.somaSwahili.model.student.StudentWallet wallet = com.abednego.somaSwahili.model.student.StudentWallet.builder()
+                .student(student)
+                .balance(java.math.BigDecimal.ZERO)
+                .build();
+        student.setWallet(wallet);
 
         return studentRepository.save(student);
     }

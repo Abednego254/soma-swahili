@@ -39,4 +39,8 @@ public class Tutor extends User {
 
     @OneToOne(mappedBy = "tutor", cascade = CascadeType.ALL, orphanRemoval = true)
     private TutorWallet wallet;
+
+    @OneToMany(mappedBy = "tutor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties("tutor")
+    private List<com.abednego.somaSwahili.model.course.Course> courses;
 }
