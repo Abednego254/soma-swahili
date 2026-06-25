@@ -1,4 +1,4 @@
-package com.abednego.somaSwahili.service.impl;
+package com.abednego.somaSwahili.service;
 
 import com.abednego.somaSwahili.model.User;
 import com.abednego.somaSwahili.repository.UserRepository;

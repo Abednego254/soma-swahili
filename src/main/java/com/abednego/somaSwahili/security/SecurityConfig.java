@@ -36,7 +36,7 @@ public class SecurityConfig {
                         // Registration endpoints (open)
                         .requestMatchers(HttpMethod.POST, "/api/admins").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/students").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/employers").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/tutors").permitAll()
 
                         // Login/auth endpoints (open)
                         .requestMatchers("/api/auth/**").permitAll()
