@@ -454,7 +454,7 @@ export default function App() {
         {/* Navigation Sidebar */}
         <aside className="sidebar glass-panel">
           <div className="brand">
-            <BookOpen className="icon-gold" size={28} />
+            <img src="/logo.png" alt="Soma Swahili Logo" className="brand-logo" />
             <span>Soma Swahili</span>
           </div>
           <div className="user-profile-summary">
@@ -759,7 +759,7 @@ export default function App() {
         {/* Navigation Sidebar */}
         <aside className="sidebar glass-panel">
           <div className="brand">
-            <BookOpen className="icon-gold" size={28} />
+            <img src="/logo.png" alt="Soma Swahili Logo" className="brand-logo" />
             <span>Soma Swahili</span>
           </div>
           <div className="user-profile-summary">
@@ -1017,7 +1017,7 @@ export default function App() {
         {/* Navigation Sidebar */}
         <aside className="sidebar glass-panel">
           <div className="brand">
-            <BookOpen className="icon-gold" size={28} />
+            <img src="/logo.png" alt="Soma Swahili Logo" className="brand-logo" />
             <span>Soma Swahili</span>
           </div>
           <div className="user-profile-summary">
@@ -1240,6 +1240,7 @@ export default function App() {
           {authMode === 'landing' ? (
             <div className="landing-layout">
               <div className="landing-hero text-center p-5">
+                <img src="/logo.png" alt="Soma Swahili Logo" className="landing-logo mb-4" />
                 <div className="hero-badge mb-3">🎓 Soma Swahili Platform</div>
                 <h1 className="text-5xl mb-4 font-bold text-gold">Jifunze Kiswahili Leo!</h1>
                 <p className="text-lg text-secondary max-w-2xl mx-auto mb-5">
@@ -1285,6 +1286,9 @@ export default function App() {
           ) : (
             // Auth Form (Login / Register)
             <div className="auth-form-card glass-panel p-5">
+              <div className="text-center mb-3">
+                <img src="/logo.png" alt="Soma Swahili Logo" className="auth-logo" />
+              </div>
               <div className="auth-header text-center mb-4">
                 <h2>{authMode === 'login' ? 'Karibu Tena (Welcome Back)' : 'Jisajili (Create Account)'}</h2>
                 <p className="text-secondary text-sm">
